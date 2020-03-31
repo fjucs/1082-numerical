@@ -7,7 +7,7 @@ def calc_c(eq, a, b):
     return ((a*fb)-(b*fa))/(fb-fa)
 
 def secant(eq, a, b, eps=10e-10):
-    print('Modify Secant method: {}'.format(eq.get_name()))
+    print('Secant method: {}'.format(eq.get_name()))
     solve = lambda x: eq.s(x)
     cnt = 1
     c = calc_c(eq, a, b)
