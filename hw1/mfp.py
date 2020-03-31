@@ -10,6 +10,8 @@ def modify_false_position(eq, a, b, eps=10e-10):
     pre_c = 0.0
     fa = solve(a)
     fb = solve(b)
+    if fa * fb > 0:
+        raise RuntimeError('Cannot solve in modify false position method')
     c = calc_c(a, fa, b, fb)
     while abs(c - pre_c) >= eps:
         print_result(cnt, c, a, b)
@@ -18,8 +20,10 @@ def modify_false_position(eq, a, b, eps=10e-10):
         if fa * fc < 0:
             b = c
             fa = fa/2
+            fb = solve(b)
         else:
             a = c
+            fa = solve(a)
             fb = fb/2
         #
         pre_c = c
