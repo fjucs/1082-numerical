@@ -93,6 +93,12 @@ def eval_pn(ai, x):
 			ans += (x ** i) * a
 	return ans
 
+'''
+Find the best choice of n for Pn(x)
+
+sigma_m^2 = Σ( (P_m(x_i) - f(x_i))^2 / (n-m) )
+And find the smallest sigma_i and i is the best choice
+'''
 def find_best_choice(x, y, limit=10):
 	slist = []
 	for i in range(1, limit+1):
@@ -133,14 +139,16 @@ def main():
 			px, py = [float(x) for x in i.strip().split()]
 			x.append(px)
 			y.append(py)
-	plt.scatter(x, y, s=5, c='r')
-	#
+	plt.scatter(x, y, s=5, c='r') # draw the dataset
+	# Find the best choice
 	n = find_best_choice(x, y, 100)
 	print('Best Choice=', n)
+	# Least Square Method
 	A = least_square(n, x, y)
 
 	rang = [-10, 10]
 	off = 0.01
+	# Plot the Pn(x)
 	xi = np.arange(*rang, off)
 	yi = [eval_pn(A, t) for t in xi]
 	plt.plot(xi, yi)
