@@ -139,7 +139,7 @@ def main():
 			px, py = [float(x) for x in i.strip().split()]
 			x.append(px)
 			y.append(py)
-	plt.scatter(x, y, s=5, c='r') # draw the dataset
+	plt.scatter(x, y, s=10, c='r') # draw the dataset
 	# Find the best choice
 	n = find_best_choice(x, y, 100)
 	print('Best Choice=', n)
